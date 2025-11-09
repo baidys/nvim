@@ -15,11 +15,15 @@ require("conform").setup({
 	formatters_by_ft = {
 		elixir = { "elixirls" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_fallback = true, -- Fall back to LSP if no formatter is found
-	},
+	format_on_save = false,
 })
+
+vim.keymap.set("n", "<leader>f", function()
+	require("conform").format({
+		async = true,
+		lsp_fallback = true,
+	})
+end, { desc = "Format buffer" })
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = { "elixir", "html" },
