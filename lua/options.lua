@@ -5,6 +5,8 @@ vim.cmd("set noshowmode")
 vim.opt.laststatus = 0
 vim.opt.ruler = false
 
+vim.lsp.enable('expert')
+
 require("conform").setup({
   formatters_by_ft = {
     elixir = { "mix" },
@@ -85,7 +87,7 @@ require('lualine').setup {
 require("nord").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
-  transparent = false,        -- Enable this to disable setting the background color
+  transparent = true,        -- Enable this to disable setting the background color
   terminal_colors = true,     -- Configure the colors used when opening a `:terminal` in Neovim
   diff = { mode = "bg" },     -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
   borders = true,             -- Enable the border between verticaly split windows visible
