@@ -5,7 +5,16 @@ vim.cmd("set noshowmode")
 vim.opt.laststatus = 0
 vim.opt.ruler = false
 
+require'FTerm'.setup({
+    border = 'double',
+    dimensions  = {
+        height = 0.9,
+        width = 0.9,
+    },
+})
+
 vim.lsp.enable('expert')
+vim.lsp.enable("gleam")
 
 require("conform").setup({
   formatters_by_ft = {
@@ -84,56 +93,34 @@ require('lualine').setup {
   extensions = {}
 }
 
-require("nord").setup({
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  transparent = true,        -- Enable this to disable setting the background color
-  terminal_colors = true,     -- Configure the colors used when opening a `:terminal` in Neovim
-  diff = { mode = "bg" },     -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
-  borders = true,             -- Enable the border between verticaly split windows visible
-  errors = { mode = "bg" },   -- Display mode for errors and diagnostics
-  -- values : [bg|fg|none]
-  search = { theme = "vim" }, -- theme for highlighting search results
-  -- values : [vim|vscode]
-  styles = {
-    -- Style to be applied to different syntax groups
-    -- Value is any valid attr-list value for `:help nvim_set_hl`
-    comments = { italic = true },
-    keywords = {},
-    functions = {},
-    variables = {},
-
-    -- To customize lualine/bufferline
-    bufferline = {
-      current = {},
-      modified = { italic = true },
-    },
-
-    lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
+-- Default options:
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
   },
-
-  -- colorblind mode
-  -- see https://github.com/EdenEast/nightfox.nvim#colorblind
-  -- simulation mode has not been implemented yet.
-  colorblind = {
-    enable = false,
-    preserve_background = false,
-    severity = {
-      protan = 0.0,
-      deutan = 0.0,
-      tritan = 0.0,
-    },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "",  -- can be "hard", "soft" or empty string
+  palette_overrides = {
+   light0 = "#f2e5bc",
+   dark0 = "#343231",
   },
-
-  -- Override the default colors
-  ---@param colors Nord.Palette
-  on_colors = function(colors) end,
-
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with all highlights and the colorScheme table
-  ---@param colors Nord.Palette
-  on_highlights = function(highlights, colors) end,
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
 })
+vim.cmd("colorscheme gruvbox")
 
 
 require("tiny-inline-diagnostic").setup({

@@ -5,6 +5,9 @@
 --vim.opt.smartindent = true
 --vim.opt.autoindent = true
 
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')  -- <A-i>
+vim.keymap.set('t', '<leader>t', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>') -- <A-i>
+
 vim.keymap.set("n", "<leader>f", function()
   require("conform").format({
     lsp_fallback = true,
